@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+ 
+ <parameter name="testEnv" value="envDefault" />
+
+  <test thread-count="5" name="SearchModuleTest">
+  	<parameter name="registrationYear" value="2015" />
+  	<parameter name="filterElement" value="Erstzulassung ab"/>
+    <classes>
+      <class name="autoheroTests.InitSuite"/>
+      <class name="autoheroTests.ModuleSearchTests">
+      			<methods>
+                    <include name="verifyFilterByRegistrationSortByPrice" />
+                </methods>
+       </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

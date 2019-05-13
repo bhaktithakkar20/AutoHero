@@ -1,0 +1,12 @@
+{
+  "baseUrl" : "https://www.autohero.com/de/search/",
+  "browser" : "chrome",
+  "logDirectory" : "default",
+  "reportDirectory" : "default",
+  "emailFrom" : "",
+  "emailFromPass" : "",
+  "emailTo" : "",
+  "emailSubject" : "Test Execution Report Dated: ",
+  "emailBody" : "Test Execution Report Dated: "
+
+}
