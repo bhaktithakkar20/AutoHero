@@ -1,7 +1,7 @@
 # POC for AutoHero Search Module Test.
 
 ### Demo Video :
-Please find the end to end demonstration of the POC in the repository itself. You can find it with name 
+Please find the end to end demonstration of the POC in the repository itself. You can find it in the **demo** folder named 
 
 ``` AutoHero POC walkthrough ```
 
