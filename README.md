@@ -41,17 +41,18 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 ### Test Setup:
-1. Apache Maven Setup:
-	We need to have Apache Maven installed on the system which can facilitate execution of this test suite without needing to    
-	install any test IDE's.
+Apache Maven Setup:
+We need to have Apache Maven installed on the system which can facilitate execution of this test suite without needing to install any test IDE's.
 
 **Steps:**
 - Apache Maven can be installed from here: "http://maven.apache.org/download.cgi" and extract it to appropriate location.
 - Set Maven command in environment variable.
 	> vim ~/.bash_profile
+	
 - Edit the above file to add  below lines:
 	> export M2_HOME=<path_to_maven_installation_directory>/apache-maven-3.1.1
 	> export PATH=$PATH:$M2_HOME/bin
+	
 - Restart the terminal and verify the maven version using below command:
 	> $mvn -version
 	  
@@ -64,11 +65,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. The test execution can be customized to be executed on different browsers and different test environments.
    The configurations can be updated under : 
+   
    > AutoHero/src/test/java/resources/config/envDefault/config.json
    > AutoHero/src/test/java/resources/config/envQA/config.json
    
    Default test environment is "envDefault".
-   Test environment to be used is configured in "testng.xml" under below declaration:<parameter name="testEnv" value="envDefault" />
+   Test environment to be used is configured in "testng.xml" under below declaration:
+   
+   ``` <parameter name="testEnv" value="envDefault" /> ```
+   
    A new environment can be added dynamically under config directory. 							
 
 2. The test takes Registration Year as input. Currently as per the use case, this value is set to 2015.
@@ -82,7 +87,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Test Execution:
 
-Method 1:Using maven commands on terminal.
+Method 1: Using maven commands on terminal.
 
 1. Open the terminal and navigate to the directory where source code of test suite is saved.
 2. Execute the command :  "mvn clean install test -DsuiteXmlFile=testng.xml".
@@ -90,7 +95,7 @@ Method 1:Using maven commands on terminal.
 4. Logs for test execution are stored in folders created with time-stamp of test execution.
 5. Html Test Reports are available for detailed verification.
 			
-Method 2:Using Eclipse IDE.
+Method 2: Using Eclipse IDE.
 
 1. Install Eclipse IDE and install plugin for testNG.
 			    Details : https://www.toolsqa.com/selenium-webdriver/install-testng/			
