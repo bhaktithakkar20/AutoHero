@@ -1,9 +1,9 @@
 # POC for AutoHero Search Module Test.
 
 ### Demo Video :
-Please find the end to end demonstration of the POC in the repository itself. You can find it in the **demo** folder named 
+Please find the end to end demonstration of the POC in the repository itself. You can find the video in the **demo** folder named 
 
-``` AutoHero POC walkthrough ```
+``` AutoHero_POC_walkthrough.mp4 ```
 
 ### Project Description:
 This POC project is designed to verify the filter and sort operations implemented for search module.
