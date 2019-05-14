@@ -8,7 +8,8 @@ public class Constants {
 	public static String configFileName = "/config.json";
 	public static int timeout = 20;
 	public static String defaultTestBed = "envDefault";
-	public static String driverChrome = "chromedriver";
+	public static String driverChromeMac = "chromedriver";
+	public static String driverChromeWin = "chromedriver.exe";
 	public static String driverFireFox = "geckodriver";
 	public static String driverDirectory = System.getProperty("user.dir") + "/src/test/java/resources/drivers/";
 	public static String configPath = System.getProperty("user.dir") + "/src/test/java/resources/config/";

@@ -46,10 +46,16 @@ public class InitSuite {
 
 		try {
 			objConfig = new TestConfig(suiteEnv);
-
+			String strOS = System.getProperty("os.name").toLowerCase();
 			objConfig.readTestConfig();
 			if (objConfig.browser.equals("chrome") | objConfig.browser.equals("")) {
-				driverPath = driverPath + Constants.driverChrome;
+
+				if (strOS.contains("mac")) {
+					driverPath = driverPath + Constants.driverChromeMac;
+				} else if (strOS.toLowerCase().contains("windows")) {
+					driverPath = driverPath + Constants.driverChromeWin;
+				}
+
 				System.setProperty("webdriver.chrome.driver", driverPath);
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--disable-popup-blocking");

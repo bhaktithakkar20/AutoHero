@@ -225,7 +225,7 @@ public class ModuleSearchPage {
 			Thread.sleep(Constants.additionalWait8Sec);
 
 			instanceLogger
-					.info("[filterYearAndSortPriceDesc]:Sorting by Price in Descending order completed successfully!");
+			.info("[filterYearAndSortPriceDesc]:Sorting by Price in Descending order completed successfully!");
 		} catch (Exception e) {
 			instanceLogger.severe("Oops! Encountered Exception in sortBypriceDesc!" + e.getMessage());
 		}
@@ -275,13 +275,12 @@ public class ModuleSearchPage {
 
 	/**
 	 * This method contains logic to filter by registration date -> sort by price in
-	 * descending order. 
-	 * Steps followed are: 
-	 * 1.)Expand the filter by registration element.
+	 * descending order. Steps followed are: 
+	 * 1.)Expand the filter by registration element. 
 	 * 2.)Select the registration year from drop-down from expanded view.
 	 * 3.)Change the number of records displayed per page to 72 to reduce number of
 	 * iterations while fetching data to be verified. 
-	 * 4.)Sort by price in descending order.
+	 * 4.)Sort by price in descending order. 
 	 * 5.)Collect all the data required for verification i.e. registration
 	 * year and price for all filtered records.
 	 * 
@@ -316,8 +315,8 @@ public class ModuleSearchPage {
 			// filtered records.
 			totalPages = Ordering.getNumberOfPagesToBeTraversed(numOfFilteredRecords, numberOfRecordsPerPage);
 			instanceLogger
-					.info("[filterYearAndSortPriceDesc]: Total number pages having filtered data after filtering are : "
-							+ totalPages);
+			.info("[filterYearAndSortPriceDesc]: Total number pages having filtered data after filtering are : "
+					+ totalPages);
 
 			do {
 
@@ -330,7 +329,9 @@ public class ModuleSearchPage {
 				// page.
 				for (int i = 0; i < dateElements.size(); i++) {
 					String dateVal = dateElements.get(i).getText().substring(5).trim();
-					String amountVal = amountElements.get(i).getText().replaceAll("€", "").trim();
+
+					String tempAmountVal = amountElements.get(i).getText();
+					String amountVal = tempAmountVal.substring(0, tempAmountVal.indexOf(" ")).trim();
 
 					this.yearsOfFilteredRecords.add(Integer.parseInt(dateVal));
 					this.pricesOfFilteredRecords.add(Double.parseDouble(amountVal));
