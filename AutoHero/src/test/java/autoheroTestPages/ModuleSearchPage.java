@@ -127,32 +127,13 @@ public class ModuleSearchPage {
 	}
 
 	/**
-	 * This method contains logic to filter by registration date -> sort by price in
-	 * descending order. 
-	 * Steps followed are: 
-	 * 1.)Expand the filter by registration element. 
-	 * 2.)Select the registration year from drop-down from expanded view.
-	 * 3.)Change the number of records displayed per page to 72 to reduce number of
-	 *    iterations while fetching data to be verified. 
-	 * 4.)Sort by price in descending
-	 *    order. 
-	 * 5.)Collect all the data required for verification i.e. registration
-	 * 	  year and price for all filtered records.
-	 * @param year : Registration year used for filtering.
-	 * @return Nothing.
+	 * This method contains logic to filterByRegDate all the records having reg date
+	 * >= given year
+	 * 
+	 * @param Year : Registration year used for filtering.
+	 * @return None
 	 */
-	public void filterYearAndSortPriceDesc(Integer year) {
-
-		FileOperations foObject = new FileOperations(filteredRecordsDumpFile);
-		Select selectElementYear = null, selectElementSortBy = null, selectElementRecordsPerPage = null;
-
-		int numOfFilteredRecords = 0;
-		String labelTotalFilteredRecords = "", labelForNumberOfRecordsAvailable = "Treffer";
-
-		this.yearsOfFilteredRecords = new ArrayList<Integer>();
-		this.pricesOfFilteredRecords = new ArrayList<Double>();
-		int totalPages = 0, pageCounter = 1, numberOfRecordsPerPage = 72;
-
+	public void filterByRegDate(Integer year) {
 		try {
 			// Click on the element available to filter by first registration year and Wait
 			// for 30 seconds to obtain the expanded view
@@ -163,7 +144,8 @@ public class ModuleSearchPage {
 			// Click on dropdown to select registration year and select the registration
 			// year from dropdown as provided in test input
 			InitSuite.driver.findElement(By.xpath(locatorFirstRegistrationOptions)).click();
-			selectElementYear = new Select(InitSuite.driver.findElement(By.xpath(locatorFirstRegistrationOptions)));
+			Select selectElementYear = new Select(
+					InitSuite.driver.findElement(By.xpath(locatorFirstRegistrationOptions)));
 			selectElementYear.selectByVisibleText(year.toString());
 
 			/*
@@ -179,14 +161,29 @@ public class ModuleSearchPage {
 			Thread.sleep(Constants.additionalWait3Sec);
 
 			instanceLogger.info(
-					"[filterYearAndSortPriceDesc]:Filter By registration year " + year + " completeed successfully!");
+					"[filterYearAndSortPriceDesc]:Filter By registration year " + year + " completed successfully!");
 
+		} catch (Exception e) {
+			instanceLogger.severe("Oops! Encountered Exception in filterByRegDate!" + e.getMessage());
+		}
+	}
+
+	/**
+	 * This method contains logic to change the number of records displayed per page
+	 * to maximum i.e.72 to reduce the number of traversals needed.
+	 * 
+	 * @param None
+	 * @return None
+	 */
+	public void increaseNumberOfRecordsPerPage() {
+		try {
 			/*
 			 * To reduce the number of iterations to get all the filtered records , we are
 			 * increasing the number of records displayed per page to 72. This will reduce
 			 * number of autoheroTestPages we need to iterate.
 			 */
-			selectElementRecordsPerPage = new Select(InitSuite.driver.findElement(By.xpath(locatorRecordsPerPage)));
+			Select selectElementRecordsPerPage = new Select(
+					InitSuite.driver.findElement(By.xpath(locatorRecordsPerPage)));
 			selectElementRecordsPerPage.selectByIndex(2);
 			Thread.sleep(Constants.additionalWait3Sec);
 
@@ -198,8 +195,22 @@ public class ModuleSearchPage {
 			instanceLogger.info("[filterYearAndSortPriceDesc]:Number of records per page changed successfully to = "
 					+ selectElementRecordsPerPage.getFirstSelectedOption().getText());
 
+		} catch (Exception e) {
+			instanceLogger.severe("Oops! Encountered Exception in increaseNumberOfRecordsPerPage!" + e.getMessage());
+		}
+	}
+
+	/**
+	 * This method contains logic sort the filtered records by price in descending
+	 * order
+	 * 
+	 * @param None
+	 * @return None
+	 */
+	public void sortBypriceDesc() {
+		try {
 			// This step sorts the filtered records by price in descending order.
-			selectElementSortBy = new Select(InitSuite.driver.findElement(By.xpath(locatorSortRecords)));
+			Select selectElementSortBy = new Select(InitSuite.driver.findElement(By.xpath(locatorSortRecords)));
 			selectElementSortBy.selectByIndex(2);
 
 			/*
@@ -214,33 +225,110 @@ public class ModuleSearchPage {
 			Thread.sleep(Constants.additionalWait8Sec);
 
 			instanceLogger
-			.info("[filterYearAndSortPriceDesc]:Sorting by Price in Descending order completed successfully!");
+					.info("[filterYearAndSortPriceDesc]:Sorting by Price in Descending order completed successfully!");
+		} catch (Exception e) {
+			instanceLogger.severe("Oops! Encountered Exception in sortBypriceDesc!" + e.getMessage());
+		}
+	}
+
+	/**
+	 * This method contains logic to navigate to next page.
+	 * 
+	 * @param None
+	 * @return None
+	 */
+	public void navigateToNextPage() {
+		try {
+			// Click on "Next" button on page navigator to move to next page.
+			WebDriverWait waitForPageNavigator = new WebDriverWait(InitSuite.driver, Constants.timeoutExplicitWait);
+			waitForPageNavigator.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorNext)));
+			InitSuite.driver.findElement(By.xpath(locatorNext)).click();
+
+			// Wait for 8 seconds to ensure redirecting to next page has completed.
+			Thread.sleep(Constants.additionalWait8Sec);
+		} catch (Exception e) {
+			instanceLogger.severe("Oops! Encountered Exception in navigateToNextPage!" + e.getMessage());
+		}
+	}
+
+	/**
+	 * This method contains logic to scroll the browser down to bottom of page.
+	 * 
+	 * @param None
+	 * @return None
+	 */
+	public void browserScrollToBottom() {
+		try {
+			/*
+			 * Once records from current page are read, for moving to next page we need to
+			 * scroll down to the end of page to get access to page navigator
+			 */
+			((JavascriptExecutor) InitSuite.driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+			// Wait for 3 seconds for page to scroll down completely.
+			Thread.sleep(Constants.additionalWait3Sec);
+		} catch (Exception e) {
+			instanceLogger.severe("Oops! Encountered Exception in browserScrollToBottom!" + e.getMessage());
+		}
+
+	}
+
+	/**
+	 * This method contains logic to filter by registration date -> sort by price in
+	 * descending order. 
+	 * Steps followed are: 
+	 * 1.)Expand the filter by registration element.
+	 * 2.)Select the registration year from drop-down from expanded view.
+	 * 3.)Change the number of records displayed per page to 72 to reduce number of
+	 * iterations while fetching data to be verified. 
+	 * 4.)Sort by price in descending order.
+	 * 5.)Collect all the data required for verification i.e. registration
+	 * year and price for all filtered records.
+	 * 
+	 * @param year : Registration year used for filtering.
+	 * @return Nothing.
+	 */
+	public void filterYearAndSortPriceDesc(Integer year) {
+
+		FileOperations foObject = new FileOperations(filteredRecordsDumpFile);
+
+		int numOfFilteredRecords = 0;
+		String labelTotalFilteredRecords = "", labelForNumberOfRecordsAvailable = "Treffer";
+
+		this.yearsOfFilteredRecords = new ArrayList<Integer>();
+		this.pricesOfFilteredRecords = new ArrayList<Double>();
+		int totalPages = 0, pageCounter = 1, numberOfRecordsPerPage = 72;
+
+		try {
+			// filter cars having registration date >= 2015
+			filterByRegDate(year);
+			increaseNumberOfRecordsPerPage();
+			sortBypriceDesc();
 
 			// Get total number of records available after filters are applied.
 			labelTotalFilteredRecords = InitSuite.driver.findElement(By.xpath(locatorFilterCompleted)).getText();
 			numOfFilteredRecords = Integer
 					.parseInt(labelTotalFilteredRecords.replaceAll(labelForNumberOfRecordsAvailable, "").trim());
-
 			instanceLogger.info(
 					"[filterYearAndSortPriceDesc]:Total number of records after filtering are:" + numOfFilteredRecords);
 
-			// Calculate number of autoheroTestPages need to be traversed.
+			// Calculate number of total pages need to be traversed to fetch details of all
+			// filtered records.
 			totalPages = Ordering.getNumberOfPagesToBeTraversed(numOfFilteredRecords, numberOfRecordsPerPage);
 			instanceLogger
-			.info("[filterYearAndSortPriceDesc]: Total number pages having filtered data after filtering are : "
-					+ totalPages);
+					.info("[filterYearAndSortPriceDesc]: Total number pages having filtered data after filtering are : "
+							+ totalPages);
 
 			do {
 
-				// Get list of all value for Registration date and price for all records
-				// available on page
+				// Get Registration dates and prices for all filtered records present on current
+				// page.
 				List<WebElement> dateElements = InitSuite.driver.findElements(By.xpath(locatorDate));
 				List<WebElement> amountElements = InitSuite.driver.findElements(By.xpath(locatorAmount));
 
 				// Loop to extract values for date and price from list elements available on
 				// page.
 				for (int i = 0; i < dateElements.size(); i++) {
-
 					String dateVal = dateElements.get(i).getText().substring(5).trim();
 					String amountVal = amountElements.get(i).getText().replaceAll("€", "").trim();
 
@@ -248,32 +336,19 @@ public class ModuleSearchPage {
 					this.pricesOfFilteredRecords.add(Double.parseDouble(amountVal));
 
 					foObject.writeToFile(dateVal + " " + amountVal + "\n");
-
 				}
 
-				/*
-				 * Once records from current page are read, for moving to next page we need to
-				 * scroll down to the end of page to get access to page navigator
-				 */
-				((JavascriptExecutor) InitSuite.driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-
-				// Wait for 3 seconds for page to scroll down completely.
-				Thread.sleep(Constants.additionalWait3Sec);
+				// scroll browser to bottom to get access to page navigator.
+				browserScrollToBottom();
 
 				if (pageCounter != totalPages) {
-					// Click on "Next" button on page navigator to move to next page.
-					WebDriverWait waitForPageNavigator = new WebDriverWait(InitSuite.driver,
-							Constants.timeoutExplicitWait);
-					waitForPageNavigator.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorNext)));
-					InitSuite.driver.findElement(By.xpath(locatorNext)).click();
-
-					// Wait for 8 seconds to ensure redirecting to next page has completed.
-					Thread.sleep(Constants.additionalWait8Sec);
+					navigateToNextPage();
 				}
 				pageCounter++;
 			} while (pageCounter <= totalPages);
 
 			foObject.closeFileHandle();
+
 		} catch (Exception e) {
 			instanceLogger.severe("Oops! Encountered Exception in filterYearAndSortPriceDesc! " + e.getMessage());
 		}
