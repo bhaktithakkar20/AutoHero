@@ -14,17 +14,17 @@ The framework for this project is built on technology stack : Selenium with Java
 	--- autoherotestpages     //Follows Page Object model and consists of core logic used by tests written for search module
 	--- autoherotests         		//Actual tests.
 		--- resources
-		--- config             		//Test Configurations.
-		--- drivers            		//Drivers for different browsers.
-		--- utilities          		//Java utilities required for test verifications. 
-		--- customReporter     		//Custom report generation classes.
+		    --- config                  //Test Configurations.
+		    --- drivers                 //Drivers for different browsers.
+		    --- utilities               //Java utilities required for test verifications. 
+		    --- customReporter     	//Custom report generation classes.
 		--- logs
 		--- <yyyy_mm_dd_hh_mm>		//A new log folder is created using test execution timestamp .
-		--- moduleLogs.log         
+		    --- moduleLogs.log         
 		--- test-output                 //Test Reports.
-		--- emailable-report.html 	         		
-              --- pom.xml                       //Maven dependencies and configurations.
-              --- testng.xml                    //testsuite configuration.
+		    --- emailable-report.html 	         		
+--- pom.xml                                    //Maven dependencies and configurations.
+--- testng.xml                                 //testsuite configuration.
 	
 ```                            
 ### Use Case:
