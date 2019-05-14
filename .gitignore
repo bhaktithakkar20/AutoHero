@@ -1,0 +1,16 @@
+/__MACOSX
+
+*.DS_Store
+
+/AutoHero/target
+/AutoHero/test-output
+
+/AutoHero/src/test/.DS_Store
+
+/AutoHero/src/test/java/.DS_Store
+/AutoHero/src/test/java/resources/.DS_Store
+
+/AutoHero/src/test/java/autoheroTestPages/.DS_Store
+/AutoHero/src/test/java/autoheroTests/.DS_Store
+
+/AutoHero/src/test/java/resources/config/envQA/.DS_Store
