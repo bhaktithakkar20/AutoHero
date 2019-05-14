@@ -1,13 +1,12 @@
-Project Title : 
-			  POC for AutoHero Search Module Test.
+**POC for AutoHero Search Module Test.**
 
-Project Description:
-              This POC project is designed to verify the filter and sort operations implemented for search module.
+**Project Description:**             
+This POC project is designed to verify the filter and sort operations implemented for search module.
 
-Project Framework:
-              The framework for this project is built on technology stack : Selenium with Java + TestNG + Maven.
+**Project Framework:**
+The framework for this project is built on technology stack : Selenium with Java + TestNG + Maven.
 
-Project architecture :
+**Project architecture :**
 
 			AutoHero
 			  --- src/test/java
@@ -27,7 +26,7 @@ Project architecture :
               --- pom.xml                       //Maven dependencies and configurations.
               --- testng.xml                    //testsuite configuration.
                             
-Use Case:
+**Use Case:**
 		1.)Open https://www.autohero.com/de/search/
 		2.)Filter for First registration (Erstzulassung). Filter for FROM 2015
 		3.)Apply Filter
@@ -36,15 +35,15 @@ Use Case:
 		6.)Verify all cars are sorted by price descending    
 	      
 
-Getting Started:
+**Getting Started:**
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 
 
-Test Setup:
+**Test Setup:**
 1.)Apache Maven Setup:
-	We need to have Apache Maven installed on the system which can facilitate execution of this test suite without needing to install any
-	test IDE's.
+	We need to have Apache Maven installed on the system which can facilitate execution of this test suite without needing to    
+	install any test IDE's.
 
 	Steps: 
 	1.)Apache Maven can be installed from here: "http://maven.apache.org/download.cgi" and extract it to appropriate location.
@@ -79,7 +78,7 @@ Test Configurations:
    
 
 
-Test Execution:   
+**Test Execution: **  
 Method 1:	Using maven commands on terminal.
 
 			1.1)Open the terminal and navigate to the directory where source code of test suite is saved.
@@ -96,13 +95,13 @@ Method 2:   Using Eclipse IDE.
 			 
 			
 			
-Test Logs and Reports:
+**Test Logs and Reports:**
 1.)Logs for test execution are stored in fresh folders created with time-stamp for every test execution.
 2.)Html Test Reports are available for detailed verification.
 3.)Email Reports are sent if email parameters are configured appropriately in config file.
 		
 	   
-Future Enhancements:
+**Future Enhancements:**
 1.)Facilitating Selenium grid setup.
 2.)Custom HTML reports.
 
