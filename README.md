@@ -1,5 +1,10 @@
 # POC for AutoHero Search Module Test.
 
+### Demo Video :
+Please find the end to end demonstration of the POC in the repository itself. You can find it with name 
+
+``` AutoHero POC walkthrough ```
+
 ### Project Description:
 This POC project is designed to verify the filter and sort operations implemented for search module.
 
@@ -51,6 +56,8 @@ We need to have Apache Maven installed on the system which can facilitate execut
 	
 - Edit the above file to add  below lines:
 	> export M2_HOME=<path_to_maven_installation_directory>/apache-maven-3.1.1
+	
+	
 	> export PATH=$PATH:$M2_HOME/bin
 	
 - Restart the terminal and verify the maven version using below command:
@@ -90,7 +97,8 @@ We need to have Apache Maven installed on the system which can facilitate execut
 Method 1: Using maven commands on terminal.
 
 1. Open the terminal and navigate to the directory where source code of test suite is saved.
-2. Execute the command :  "mvn clean install test -DsuiteXmlFile=testng.xml".
+2. Execute the command :  
+``` mvn clean install test -DsuiteXmlFile=testng.xml ```
 3. Monitor the test being executed and once the test completes verify the results.
 4. Logs for test execution are stored in folders created with time-stamp of test execution.
 5. Html Test Reports are available for detailed verification.
